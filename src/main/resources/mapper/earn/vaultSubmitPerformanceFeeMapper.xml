@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sui.haedal.curator.mapper.VaultSubmitPerformanceFeeMapper">
+
+    <select id="submitPerformanceFeePageQuery" resultType="com.sui.haedal.curator.model.vo.VaultSubmitPerformanceFeeVo">
+        SELECT ssc.*,v.vault_name,FROM_UNIXTIME(ssc.valid_at_ms/1000, '%Y-%m-%d %H:%i:%s') valid_at_ms_str from vault_submit_performance_fee ssc
+        LEFT JOIN vault v on v.vault_id=ssc.vault_id where 1=1
+        <if test="queryBo.submitUserAddress!= null and  queryBo.submitUserAddress!=''">
+            and (v.owner=#{queryBo.submitUserAddress} or v.curator=#{queryBo.submitUserAddress})
+        </if>
+        <if test="queryBo.verifyUserAddress!= null and  queryBo.verifyUserAddress!=''">
+            and (v.owner=#{queryBo.verifyUserAddress} or v.guardian=#{queryBo.verifyUserAddress})
+        </if>
+        <if test="queryBo.vaultId!= null and  queryBo.vaultId!=''">
+            and ssc.vault_id=#{queryBo.vaultId}
+        </if>
+        <if test="queryBo.vaultName!= null and  queryBo.vaultName!=''">
+            and v.vault_name like concat('%',#{queryBo.vaultName},'%')
+        </if>
+    </select>
+
+</mapper>
