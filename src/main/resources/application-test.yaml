@@ -3,8 +3,24 @@ spring:
     url: jdbc:mysql://52.74.206.162:3307/haedal_earn_borrow?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: haedalOne
     password: haedalOne!@#
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher # 关键：修复 Swagger UI 404 问题（2.6+ 必须配置）
 
 sui-config:
   htoken:
     htoken-template: /home/admin/app/sui-file/htoken-template/
     htoken-replace: /home/admin/app/sui-file/
+
+springdoc:
+  # 扫描 Controller 所在包
+  packages-to-scan: com.sui.haedal.curator.rest
+  # Swagger UI 访问路径（默认 /swagger-ui/index.html，可自定义）
+  swagger-ui:
+    path: /swagger-ui.html
+    # 接口排序：按方法名（GET/POST 或 字母）
+    operationsSorter: method
+  # OpenAPI JSON 文档路径
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
