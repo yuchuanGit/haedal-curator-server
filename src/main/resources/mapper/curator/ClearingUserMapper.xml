@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sui.haedal.curator.mapper.ClearingUserMapper">
+
+    <select id="clearingUserPageQuery" resultType="com.sui.haedal.curator.model.vo.ClearingUserVo">
+        SELECT cu.*,b.market_title from clearing_user cu
+        left join borrow b on b.market_id=cu.market_id where 1=1
+        <if test="queryBo.marketId!= null and  queryBo.marketId!=''">
+            and cu.market_id=#{queryBo.marketId}
+        </if>
+        <if test="queryBo.userAddress!= null and  queryBo.userAddress!=''">
+            and v.user_address like concat('%',#{queryBo.userAddress},'%')
+        </if>
+    </select>
+
+</mapper>

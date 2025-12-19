@@ -8,15 +8,14 @@ import com.sui.haedal.curator.common.FileCopyRenameUtil;
 import com.sui.haedal.curator.common.ResourceFileUtil;
 import com.sui.haedal.curator.common.page.Condition;
 import com.sui.haedal.curator.config.HTokenConfig;
+import com.sui.haedal.curator.mapper.ClearingUserMapper;
 import com.sui.haedal.curator.mapper.VaultSubmitManagementFeeMapper;
 import com.sui.haedal.curator.mapper.VaultSubmitPerformanceFeeMapper;
 import com.sui.haedal.curator.mapper.VaultSubmitSupplyCapMapper;
+import com.sui.haedal.curator.model.bo.ClearingUserQueryBo;
 import com.sui.haedal.curator.model.bo.HTokenBo;
 import com.sui.haedal.curator.model.bo.VaultSubmitQueryBo;
-import com.sui.haedal.curator.model.vo.HTokenVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitManagementFeeVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitPerformanceFeeVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitSupplyCapVo;
+import com.sui.haedal.curator.model.vo.*;
 import com.sui.haedal.curator.service.EarnCuratorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -43,6 +42,9 @@ public class EarnCuratorServiceImpl implements EarnCuratorService {
 
     @Resource
     private VaultSubmitManagementFeeMapper submitManagementFeeMapper;
+
+    @Resource
+    private ClearingUserMapper clearingUserMapper;
 
     @Resource
     private HTokenConfig hTokenConfig;
@@ -83,6 +85,18 @@ public class EarnCuratorServiceImpl implements EarnCuratorService {
     public IPage<VaultSubmitManagementFeeVo> submitManagementFeePageQuery(VaultSubmitQueryBo queryBo){
         IPage<VaultSubmitManagementFeeVo> page = Condition.getPage(queryBo);
         page.setRecords(submitManagementFeeMapper.submitManagementFeePageQuery(page,queryBo));
+        return page;
+    }
+
+    /**
+     * 分页查询清算用户
+     * @param queryBo
+     * @return
+     */
+    @Override
+    public IPage<ClearingUserVo> clearingUserPageQuery(ClearingUserQueryBo queryBo){
+        IPage<ClearingUserVo> page = Condition.getPage(queryBo);
+        page.setRecords(clearingUserMapper.clearingUserPageQuery(page,queryBo));
         return page;
     }
 

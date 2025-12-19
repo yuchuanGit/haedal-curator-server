@@ -1,12 +1,10 @@
 package com.sui.haedal.curator.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.sui.haedal.curator.model.bo.ClearingUserQueryBo;
 import com.sui.haedal.curator.model.bo.HTokenBo;
 import com.sui.haedal.curator.model.bo.VaultSubmitQueryBo;
-import com.sui.haedal.curator.model.vo.HTokenVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitManagementFeeVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitPerformanceFeeVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitSupplyCapVo;
+import com.sui.haedal.curator.model.vo.*;
 
 public interface EarnCuratorService {
 
@@ -30,6 +28,13 @@ public interface EarnCuratorService {
      * @return
      */
     IPage<VaultSubmitManagementFeeVo> submitManagementFeePageQuery(VaultSubmitQueryBo queryBo);
+
+    /**
+     * 分页查询清算用户
+     * @param queryBo
+     * @return
+     */
+    IPage<ClearingUserVo> clearingUserPageQuery(ClearingUserQueryBo queryBo);
 
     /**
      * geHTokenInfo

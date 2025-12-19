@@ -2,12 +2,10 @@ package com.sui.haedal.curator.rest;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.sui.haedal.curator.common.R;
+import com.sui.haedal.curator.model.bo.ClearingUserQueryBo;
 import com.sui.haedal.curator.model.bo.HTokenBo;
 import com.sui.haedal.curator.model.bo.VaultSubmitQueryBo;
-import com.sui.haedal.curator.model.vo.HTokenVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitManagementFeeVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitPerformanceFeeVo;
-import com.sui.haedal.curator.model.vo.VaultSubmitSupplyCapVo;
+import com.sui.haedal.curator.model.vo.*;
 import com.sui.haedal.curator.service.EarnCuratorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -45,6 +43,11 @@ public class EarnCuratorRest {
         return R.data(service.submitManagementFeePageQuery(queryBo));
     }
 
+    @PostMapping("/clearingUserPageQuery")
+    @Operation(summary = "clearingUserPageQuery", description = "清算用户分页查询")
+    public R<IPage<ClearingUserVo>> clearingUserPageQuery(@RequestBody ClearingUserQueryBo queryBo){
+        return R.data(service.clearingUserPageQuery(queryBo));
+    }
 
     @PostMapping("/geHTokenInfo")
     @Operation(summary = "geHTokenInfo", description = "geHTokenInfo")
