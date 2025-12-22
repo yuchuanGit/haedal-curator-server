@@ -17,6 +17,7 @@
         <if test="queryBo.vaultName!= null and  queryBo.vaultName!=''">
             and v.vault_name like concat('%',#{queryBo.vaultName},'%')
         </if>
+        ORDER BY ssc.valid_at_ms desc
     </select>
 
 </mapper>
