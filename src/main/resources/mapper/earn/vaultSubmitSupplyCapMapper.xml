@@ -3,7 +3,7 @@
 <mapper namespace="com.sui.haedal.curator.mapper.VaultSubmitSupplyCapMapper">
 
     <select id="submitSupplyCapPageQuery" resultType="com.sui.haedal.curator.model.vo.VaultSubmitSupplyCapVo">
-        SELECT ssc.*,v.vault_name,FROM_UNIXTIME(ssc.valid_at_ms/1000, '%Y-%m-%d %H:%i:%s') valid_at_ms_str from vault_submit_supply_cap ssc
+        SELECT ssc.*,v.vault_name,v.asset_type,FROM_UNIXTIME(ssc.valid_at_ms/1000, '%Y-%m-%d %H:%i:%s') valid_at_ms_str from vault_submit_supply_cap ssc
         LEFT JOIN vault v on v.vault_id=ssc.vault_id where 1=1
         <if test="queryBo.submitUserAddress!= null and  queryBo.submitUserAddress!=''">
             and (v.owner=#{queryBo.submitUserAddress} or v.curator=#{queryBo.submitUserAddress})

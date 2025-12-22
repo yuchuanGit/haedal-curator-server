@@ -4,6 +4,7 @@ package com.sui.haedal.curator.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.sui.haedal.curator.common.CoinUtils;
 import com.sui.haedal.curator.common.FileCopyRenameUtil;
 import com.sui.haedal.curator.common.ResourceFileUtil;
 import com.sui.haedal.curator.common.page.Condition;
@@ -59,7 +60,12 @@ public class EarnCuratorServiceImpl implements EarnCuratorService {
     @Override
     public IPage<VaultSubmitSupplyCapVo> submitSupplyCapPageQuery(VaultSubmitQueryBo queryBo){
         IPage<VaultSubmitSupplyCapVo> page = Condition.getPage(queryBo);
-        page.setRecords(submitSupplyCapMapper.submitSupplyCapPageQuery(page,queryBo));
+        List<VaultSubmitSupplyCapVo>  records = submitSupplyCapMapper.submitSupplyCapPageQuery(page,queryBo);
+        for (VaultSubmitSupplyCapVo record : records) {
+            String assetCoinType = CoinUtils.coinTokenTypeVal(record.getAssetType());
+            record.setAssetDecimals(CoinUtils.getCoinDecimal(assetCoinType));
+        }
+        page.setRecords(records);
         return page;
     }
 
@@ -72,7 +78,12 @@ public class EarnCuratorServiceImpl implements EarnCuratorService {
     @Override
     public IPage<VaultSubmitPerformanceFeeVo> submitPerformanceFeePageQuery(VaultSubmitQueryBo queryBo){
         IPage<VaultSubmitPerformanceFeeVo> page = Condition.getPage(queryBo);
-        page.setRecords(submitPerformanceFeeMapper.submitPerformanceFeePageQuery(page,queryBo));
+        List<VaultSubmitPerformanceFeeVo>  records = submitPerformanceFeeMapper.submitPerformanceFeePageQuery(page,queryBo);
+        for (VaultSubmitPerformanceFeeVo record : records) {
+            String assetCoinType = CoinUtils.coinTokenTypeVal(record.getAssetType());
+            record.setAssetDecimals(CoinUtils.getCoinDecimal(assetCoinType));
+        }
+        page.setRecords(records);
         return page;
     }
 
@@ -84,7 +95,12 @@ public class EarnCuratorServiceImpl implements EarnCuratorService {
     @Override
     public IPage<VaultSubmitManagementFeeVo> submitManagementFeePageQuery(VaultSubmitQueryBo queryBo){
         IPage<VaultSubmitManagementFeeVo> page = Condition.getPage(queryBo);
-        page.setRecords(submitManagementFeeMapper.submitManagementFeePageQuery(page,queryBo));
+        List<VaultSubmitManagementFeeVo>  records = submitManagementFeeMapper.submitManagementFeePageQuery(page,queryBo);
+        for (VaultSubmitManagementFeeVo record : records) {
+            String assetCoinType = CoinUtils.coinTokenTypeVal(record.getAssetType());
+            record.setAssetDecimals(CoinUtils.getCoinDecimal(assetCoinType));
+        }
+        page.setRecords(records);
         return page;
     }
 

@@ -15,6 +15,15 @@ public class VaultSubmitManagementFeeVo {
     @Schema(description = "金库ID")
     private String vaultId;
 
+    @Schema(description = "金库名称")
+    private String vaultName;
+
+    @Schema(description = "金库存资产币种")
+    private String assetType;
+
+    @Schema(description = "资产小数位数")
+    private Integer assetDecimals;
+
     @Schema(description = "操作用户")
     private String caller;
 
