@@ -36,7 +36,7 @@ public class VaultSubmitPerformanceFeeVo {
     @Schema(description = "生效时间格式")
     private String validAtMsStr;
 
-    @Schema(description = "事件类型 1 提交 2: 成功 3: 失败")
+    @Schema(description = "事件类型 1 提交 2: 成功 3: 失败 4撤回")
     private Integer eventType;
 
     @Schema(description = "数据链上交易unix时间")

@@ -17,6 +17,12 @@
         <if test="queryBo.vaultName!= null and  queryBo.vaultName!=''">
             and v.vault_name like concat('%',#{queryBo.vaultName},'%')
         </if>
+        <if test="queryBo.eventTypes != null and queryBo.eventTypes.size() >0 ">
+            and ssc.event_type in
+            <foreach collection="queryBO.eventTypes" item="eventType" index="index" open="(" separator="," close=")">
+                #{eventType}
+            </foreach>
+        </if>
         ORDER BY ssc.valid_at_ms desc
     </select>
 
