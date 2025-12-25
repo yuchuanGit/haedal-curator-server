@@ -1,5 +1,6 @@
 package com.sui.haedal.curator.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -45,4 +46,10 @@ public class ClearingUserVo {
 
     @Schema(description = "市场名称")
     private String marketTitle;
+
+    @JsonProperty("CollateralCoinDecimals")
+    private Integer collateralCoinDecimals;//抵押币种精度
+
+    @JsonProperty("LoanCoinDecimals")
+    private Integer loanCoinDecimals;//贷款币种精度
 }

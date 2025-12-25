@@ -3,8 +3,11 @@
 <mapper namespace="com.sui.haedal.curator.mapper.ClearingUserMapper">
 
     <select id="clearingUserPageQuery" resultType="com.sui.haedal.curator.model.vo.ClearingUserVo">
-        SELECT cu.*,b.market_title from clearing_user cu
-        left join borrow b on b.market_id=cu.market_id where 1=1
+        SELECT cu.*,b.market_title,ccc.coin_decimals as collateral_coin_decimals ,
+        ccl.coin_decimals as loan_coin_decimals from   clearing_user cu
+        left join borrow b on b.market_id=cu.market_id
+        left join coin_config ccc on ccc.coin_type=b.collateral_token_type
+        left join coin_config ccl on ccl.coin_type=b.loan_token_type where 1=1
         <if test="queryBo.marketId!= null and  queryBo.marketId!=''">
             and cu.market_id=#{queryBo.marketId}
         </if>
