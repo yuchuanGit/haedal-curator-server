@@ -19,7 +19,7 @@
         </if>
         <if test="queryBo.eventTypes != null and queryBo.eventTypes.size() >0 ">
             and ssc.event_type in
-            <foreach collection="queryBO.eventTypes" item="eventType" index="index" open="(" separator="," close=")">
+            <foreach collection="queryBo.eventTypes" item="eventType" index="index" open="(" separator="," close=")">
                 #{eventType}
             </foreach>
         </if>
