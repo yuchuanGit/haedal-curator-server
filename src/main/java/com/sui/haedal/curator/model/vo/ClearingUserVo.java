@@ -47,25 +47,27 @@ public class ClearingUserVo {
     @Schema(description = "市场名称")
     private String marketTitle;
 
-    @JsonProperty("预言机OracleId")
+    @Schema(description = "预言机OracleId")
     private String oracleId;
 
-    @JsonProperty("CollateralCoinDecimals")
+    @Schema(description = "抵押币种精度")
     private Integer collateralCoinDecimals;//抵押币种精度
 
-    @JsonProperty("LoanCoinDecimals")
+    @Schema(description = "贷款币种精度")
     private Integer loanCoinDecimals;//贷款币种精度
 
-    @JsonProperty("CollateralFeedId")
+    @Schema(description = "抵押FeedId")
     private String collateralFeedId;
 
-    @JsonProperty("CollateralFeedObjectId")
+    @Schema(description = "抵押FeedObjectId")
     private String collateralFeedObjectId;
 
-
-    @JsonProperty("LoanFeedId")
+    @Schema(description = "贷款FeedObjectId")
     private String loanFeedId;
 
-    @JsonProperty("LoanFeedObjectId")
+    @Schema(description = "贷款FeedObjectId")
     private String loanFeedObjectId;
+
+    @Schema(description = "贷款币种")
+    private String loanTokenType;
 }
