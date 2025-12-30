@@ -3,8 +3,9 @@
 <mapper namespace="com.sui.haedal.curator.mapper.ClearingUserMapper">
 
     <select id="clearingUserPageQuery" resultType="com.sui.haedal.curator.model.vo.ClearingUserVo">
-        SELECT cu.*,b.market_title,ccc.coin_decimals as collateral_coin_decimals ,
-        ccl.coin_decimals as loan_coin_decimals from   clearing_user cu
+        SELECT cu.*,b.market_title,b.oracle_id,
+        ccc.coin_decimals as collateral_coin_decimals,ccc.feed_id as collateral_feed_id,ccc.feed_object_id as collateral_feed_object_id,
+        ccl.coin_decimals as loan_coin_decimals,ccl.feed_id as loan_feed_id,ccl.feed_object_id as loan_feed_object_id from   clearing_user cu
         left join borrow b on b.market_id=cu.market_id
         left join coin_config ccc on ccc.coin_type=b.collateral_token_type
         left join coin_config ccl on ccl.coin_type=b.loan_token_type where 1=1
